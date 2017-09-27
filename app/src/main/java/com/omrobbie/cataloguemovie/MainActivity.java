@@ -12,6 +12,7 @@ import com.omrobbie.cataloguemovie.adapter.SearchAdapter;
 import com.omrobbie.cataloguemovie.mvp.MainPresenter;
 import com.omrobbie.cataloguemovie.mvp.MainView;
 import com.omrobbie.cataloguemovie.mvp.model.search.ResultsItem;
+import com.omrobbie.cataloguemovie.utils.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static android.support.v7.widget.DividerItemDecoration.*;
+import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
@@ -59,9 +60,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         list.clear();
         for (int i = 0; i <= 10; i++) {
             ResultsItem item = new ResultsItem();
-            item.setTitle("Title " + i);
-            item.setOverview("Overview " + i);
-            item.setReleaseDate("2016-04-27");
+            item.setTitle("This is very very very long movie title that you can read " + i);
+            item.setOverview("This is very very very long movie overview that you can read " + i);
+            item.setReleaseDate(DateTime.getLongDate("2016-04-1" + i));
             list.add(item);
         }
         adapter.replaceAll(list);
