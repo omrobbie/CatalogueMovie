@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/def_clear_space">
+
+    <ImageView
+        android:id="@+id/img_poster"
+        android:layout_width="45dp"
+        android:layout_height="68dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/captain_america" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/def_spacing">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Captain America: Civil War"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Following the events of Age of Ultron, ..."
+            android:textSize="@dimen/text_subheading" />
+
+        <TextView
+            android:id="@+id/tv_release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/def_spacing"
+            android:text="Wednesday, Apr 27, 2016"
+            android:textSize="@dimen/text_caption" />
+
+    </LinearLayout>
+
+</LinearLayout>

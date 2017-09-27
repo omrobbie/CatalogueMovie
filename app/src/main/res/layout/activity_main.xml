@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
             android:text="Search" />
+
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
