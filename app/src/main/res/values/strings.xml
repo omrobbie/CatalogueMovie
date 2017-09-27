@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Catalogue Movie</string>
-    <string name="hint_search_text">search by movie name</string>
+    <string name="hint_search_text">search by movie title</string>
 </resources>

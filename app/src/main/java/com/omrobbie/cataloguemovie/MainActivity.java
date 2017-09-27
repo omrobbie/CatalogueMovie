@@ -6,9 +6,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Toast;
 
+import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.omrobbie.cataloguemovie.adapter.SearchAdapter;
 import com.omrobbie.cataloguemovie.mvp.MainPresenter;
 import com.omrobbie.cataloguemovie.mvp.MainView;
@@ -21,18 +21,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
+import static android.support.v7.widget.DividerItemDecoration.*;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends AppCompatActivity implements MainView, MaterialSearchBar.OnSearchActionListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.et_search)
-    EditText et_search;
-
-    @BindView(R.id.btn_search)
-    Button btn_search;
+    @BindView(R.id.searchBar)
+    MaterialSearchBar searchBar;
 
     @BindView(R.id.rv_movielist)
     RecyclerView rv_movielist;
@@ -47,11 +44,42 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        searchBar.setOnSearchActionListener(this);
 
         MainPresenter presenter = new MainPresenter(this);
 
         setupList();
         loadDummyData();
+    }
+
+    /**
+     * Invoked when SearchBar opened or closed
+     *
+     * @param enabled
+     */
+    @Override
+    public void onSearchStateChanged(boolean enabled) {
+
+    }
+
+    /**
+     * Invoked when search confirmed and "search" button is clicked on the soft keyboard
+     *
+     * @param text search input
+     */
+    @Override
+    public void onSearchConfirmed(CharSequence text) {
+        Toast.makeText(this, "Searching: " + text, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Invoked when "speech" or "navigation" buttons clicked.
+     *
+     * @param buttonCode {@link #BUTTON_NAVIGATION} or {@link #BUTTON_SPEECH} will be passed
+     */
+    @Override
+    public void onButtonClicked(int buttonCode) {
+
     }
 
     private void setupList() {

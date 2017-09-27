@@ -27,26 +27,13 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/et_search"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:hint="@string/hint_search_text"
-                android:maxLines="1" />
-
-            <Button
-                android:id="@+id/btn_search"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="Search" />
-
-        </LinearLayout>
+        <com.mancj.materialsearchbar.MaterialSearchBar
+            android:id="@+id/searchBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:mt_hint="@string/hint_search_text"
+            app:mt_maxSuggestionsCount="10"
+            app:mt_placeholder="@string/hint_search_text" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_movielist"
