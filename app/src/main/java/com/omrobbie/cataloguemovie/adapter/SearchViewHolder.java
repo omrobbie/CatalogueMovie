@@ -1,5 +1,6 @@
 package com.omrobbie.cataloguemovie.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.omrobbie.cataloguemovie.BuildConfig;
+import com.omrobbie.cataloguemovie.DetailActivity;
 import com.omrobbie.cataloguemovie.R;
 import com.omrobbie.cataloguemovie.mvp.model.search.ResultsItem;
 import com.omrobbie.cataloguemovie.utils.CustomTextView;
@@ -49,5 +51,13 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
                         .placeholder(R.drawable.placeholder)
                         .centerCrop())
                 .into(img_poster);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
+                itemView.getContext().startActivity(intent);
+            }
+        });
     }
 }
