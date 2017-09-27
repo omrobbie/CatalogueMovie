@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -18,7 +19,7 @@
         android:orientation="vertical"
         android:paddingLeft="@dimen/def_spacing">
 
-        <TextView
+        <com.omrobbie.cataloguemovie.utils.CustomTextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,16 +27,17 @@
             android:maxLines="1"
             android:text="Captain America: Civil War"
             android:textSize="@dimen/text_title"
-            android:textStyle="bold" />
+            app:font="alanya.regular.ttf" />
 
-        <TextView
+        <com.omrobbie.cataloguemovie.utils.CustomTextView
             android:id="@+id/tv_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:maxLines="1"
             android:text="Following the events of Age of Ultron, the collective governments"
-            android:textSize="@dimen/text_subheading" />
+            android:textSize="@dimen/text_subheading"
+            app:font="roboto-condensed.light.ttf" />
 
         <TextView
             android:id="@+id/tv_release_date"

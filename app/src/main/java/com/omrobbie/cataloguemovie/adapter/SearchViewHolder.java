@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.omrobbie.cataloguemovie.R;
 import com.omrobbie.cataloguemovie.mvp.model.search.ResultsItem;
+import com.omrobbie.cataloguemovie.utils.CustomTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,7 +22,7 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
     ImageView img_poster;
 
     @BindView(R.id.tv_title)
-    TextView tv_title;
+    CustomTextView tv_title;
 
     @BindView(R.id.tv_overview)
     TextView tv_overview;
