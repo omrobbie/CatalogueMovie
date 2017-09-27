@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         list.clear();
         for (int i = 0; i <= 10; i++) {
             ResultsItem item = new ResultsItem();
+            item.setPosterPath("/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg");
             item.setTitle("This is very very very long movie title that you can read " + i);
             item.setOverview("This is very very very long movie overview that you can read " + i);
             item.setReleaseDate(DateTime.getLongDate("2016-04-1" + i));

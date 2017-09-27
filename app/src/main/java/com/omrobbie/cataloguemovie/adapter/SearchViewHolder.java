@@ -5,6 +5,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.omrobbie.cataloguemovie.BuildConfig;
 import com.omrobbie.cataloguemovie.R;
 import com.omrobbie.cataloguemovie.mvp.model.search.ResultsItem;
 import com.omrobbie.cataloguemovie.utils.CustomTextView;
@@ -40,5 +43,11 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
         tv_title.setText(item.getTitle());
         tv_overview.setText(item.getOverview());
         tv_release_date.setText(item.getReleaseDate());
+        Glide.with(itemView.getContext())
+                .load(BuildConfig.BASE_URL_IMG + "w45" + item.getPosterPath())
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.placeholder)
+                        .centerCrop())
+                .into(img_poster);
     }
 }
