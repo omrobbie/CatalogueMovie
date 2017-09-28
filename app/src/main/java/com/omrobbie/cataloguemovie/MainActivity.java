@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -49,13 +50,15 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.rv_movielist)
     RecyclerView rv_movielist;
 
-    private String movie_title = "";
     private SearchAdapter adapter;
     private List<ResultsItem> list = new ArrayList<>();
 
     private Call<SearchModel> apiCall;
     private APIClient apiClient;
+
+    private String movie_title = "";
     private int currentPage = 1;
+    private int totalPages = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,7 @@ public class MainActivity extends AppCompatActivity
         MainPresenter presenter = new MainPresenter(this);
 
         setupList();
+        setupListScrollListener();
         loadData();
     }
 
@@ -122,10 +126,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onRefresh() {
         currentPage = 1;
+        totalPages = 1;
 
-        swipe_refresh.setRefreshing(true);
-        if (movie_title.equals("")) loadData();
-        else loadData(movie_title);
+        stopRefrehing();
+        startRefreshing();
     }
 
     /**
@@ -167,6 +171,37 @@ public class MainActivity extends AppCompatActivity
         adapter.replaceAll(list);
     }
 
+    private void setupListScrollListener() {
+        rv_movielist.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            /**
+             * Callback method to be invoked when the RecyclerView has been scrolled. This will be
+             * called after the scroll has completed.
+             * <p>
+             * This callback will also be called if visible item range changes after a layout
+             * calculation. In that case, dx and dy will be 0.
+             *
+             * @param recyclerView The RecyclerView which scrolled.
+             * @param dx           The amount of horizontal scroll.
+             * @param dy           The amount of vertical scroll.
+             */
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                int totalItems = layoutManager.getItemCount();
+                int visibleItems = layoutManager.getChildCount();
+                int pastVisibleItems = layoutManager.findFirstCompletelyVisibleItemPosition();
+
+                if (pastVisibleItems + visibleItems >= totalItems) {
+                    if (currentPage < totalPages) currentPage++;
+                    startRefreshing();
+                }
+            }
+        });
+    }
+
     private void loadData() {
         getSupportActionBar().setSubtitle("");
 
@@ -175,6 +210,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<SearchModel> call, Response<SearchModel> response) {
                 if (response.isSuccessful()) {
+                    totalPages = response.body().getTotalPages();
                     List<ResultsItem> items = response.body().getResults();
 
                     if (currentPage > 1) adapter.updateData(items);
@@ -200,6 +236,14 @@ public class MainActivity extends AppCompatActivity
     private void loadFailed() {
         stopRefrehing();
         Toast.makeText(MainActivity.this, "Failed to load data!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void startRefreshing() {
+        if (swipe_refresh.isRefreshing()) return;
+        swipe_refresh.setRefreshing(true);
+
+        if (movie_title.equals("")) loadData();
+        else loadData(movie_title);
     }
 
     private void stopRefrehing() {
