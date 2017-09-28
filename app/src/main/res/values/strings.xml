@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Catalogue Movie</string>
     <string name="hint_search_text">search by movie title</string>
+    <string name="movie_title">Captain America: Civil War</string>
+    <string name="movie_overview">Following the events of Age of Ultron, the collective governments of the world pass an act designed to regulate all superhuman activity. This polarizes opinion amongst the Avengers, causing two factions to side with Iron Man or Captain America, which causes an epic battle between former allies.</string>
+    <string name="movie_longdate">Wednesday, Apr 27, 2016</string>
+    <string name="movie_shortdate">27 April 2016</string>
+    <string name="movie_vote">7.1</string>
+    <string name="text_overview">Overview</string>
 </resources>

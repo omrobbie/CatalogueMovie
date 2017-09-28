@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:maxLines="1"
-            android:text="Captain America: Civil War"
+            android:text="@string/movie_title"
             android:textSize="@dimen/text_title"
             app:font="alanya.regular.ttf" />
 
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:maxLines="1"
-            android:text="Following the events of Age of Ultron, the collective governments"
+            android:text="@string/movie_overview"
             android:textSize="@dimen/text_subheading"
             app:font="roboto-condensed.light.ttf" />
 
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/def_spacing"
-            android:text="Wednesday, Apr 27, 2016"
+            android:text="@string/movie_longdate"
             android:textSize="@dimen/text_caption" />
 
     </LinearLayout>
