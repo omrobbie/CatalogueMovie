@@ -10,9 +10,11 @@ import android.widget.Toast;
 
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.omrobbie.cataloguemovie.adapter.SearchAdapter;
+import com.omrobbie.cataloguemovie.api.APIClient;
 import com.omrobbie.cataloguemovie.mvp.MainPresenter;
 import com.omrobbie.cataloguemovie.mvp.MainView;
 import com.omrobbie.cataloguemovie.mvp.model.search.ResultsItem;
+import com.omrobbie.cataloguemovie.mvp.model.search.SearchModel;
 import com.omrobbie.cataloguemovie.utils.DateTime;
 
 import java.util.ArrayList;
@@ -20,8 +22,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-import static android.support.v7.widget.DividerItemDecoration.*;
+import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
 public class MainActivity extends AppCompatActivity implements MainView, MaterialSearchBar.OnSearchActionListener {
 
@@ -37,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements MainView, Materia
     private SearchAdapter adapter;
     private List<ResultsItem> list = new ArrayList<>();
 
+    private Call<SearchModel> apiCall;
+    private APIClient apiClient;
+    private int currentPage = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +55,17 @@ public class MainActivity extends AppCompatActivity implements MainView, Materia
         setSupportActionBar(toolbar);
         searchBar.setOnSearchActionListener(this);
 
+        apiClient = new APIClient();
         MainPresenter presenter = new MainPresenter(this);
 
         setupList();
-        loadDummyData();
+        loadData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (apiCall != null) apiCall.cancel();
     }
 
     /**
@@ -69,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements MainView, Materia
      */
     @Override
     public void onSearchConfirmed(CharSequence text) {
-        Toast.makeText(this, "Searching: " + text, Toast.LENGTH_SHORT).show();
+        if (String.valueOf(text).equals("")) loadData();
+        else loadData(String.valueOf(text));
     }
 
     /**
@@ -100,5 +117,36 @@ public class MainActivity extends AppCompatActivity implements MainView, Materia
             list.add(item);
         }
         adapter.replaceAll(list);
+    }
+
+    private void loadData() {
+        getSupportActionBar().setSubtitle("");
+
+        apiCall = apiClient.getService().getPopularMovie(currentPage);
+        apiCall.enqueue(new Callback<SearchModel>() {
+            @Override
+            public void onResponse(Call<SearchModel> call, Response<SearchModel> response) {
+                if (response.isSuccessful()) {
+                    List<ResultsItem> items = response.body().getResults();
+
+                    if (currentPage > 1) adapter.updateData(items);
+                    else adapter.replaceAll(items);
+                } else loadFailed();
+            }
+
+            @Override
+            public void onFailure(Call<SearchModel> call, Throwable t) {
+                loadFailed();
+            }
+        });
+    }
+
+    private void loadData(String movie_title) {
+        getSupportActionBar().setSubtitle("Searching: " + movie_title);
+        adapter.clearAll();
+    }
+
+    private void loadFailed() {
+        Toast.makeText(MainActivity.this, "Failed to load data!", Toast.LENGTH_SHORT).show();
     }
 }

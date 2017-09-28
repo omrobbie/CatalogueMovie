@@ -13,6 +13,7 @@ import com.omrobbie.cataloguemovie.DetailActivity;
 import com.omrobbie.cataloguemovie.R;
 import com.omrobbie.cataloguemovie.mvp.model.search.ResultsItem;
 import com.omrobbie.cataloguemovie.utils.CustomTextView;
+import com.omrobbie.cataloguemovie.utils.DateTime;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +45,7 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
     public void bind(ResultsItem item) {
         tv_title.setText(item.getTitle());
         tv_overview.setText(item.getOverview());
-        tv_release_date.setText(item.getReleaseDate());
+        tv_release_date.setText(DateTime.getLongDate(item.getReleaseDate()));
         Glide.with(itemView.getContext())
                 .load(BuildConfig.BASE_URL_IMG + "w45" + item.getPosterPath())
                 .apply(new RequestOptions()

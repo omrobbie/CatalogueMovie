@@ -22,9 +22,19 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
     public SearchAdapter() {
     }
 
+    public void clearAll() {
+        list.clear();
+        notifyDataSetChanged();
+    }
+
     public void replaceAll(List<ResultsItem> items) {
         list.clear();
         list = items;
+        notifyDataSetChanged();
+    }
+
+    public void updateData(List<ResultsItem> items) {
+        list.addAll(items);
         notifyDataSetChanged();
     }
 
