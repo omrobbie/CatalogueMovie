@@ -1,6 +1,7 @@
 package com.omrobbie.cataloguemovie;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -21,6 +22,7 @@ import com.omrobbie.cataloguemovie.mvp.model.search.ResultsItem;
 import com.omrobbie.cataloguemovie.mvp.model.search.SearchModel;
 import com.omrobbie.cataloguemovie.utils.DateTime;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.R.attr.format;
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
 public class MainActivity extends AppCompatActivity
@@ -78,7 +81,7 @@ public class MainActivity extends AppCompatActivity
 
         setupList();
         setupListScrollListener();
-        loadData();
+        loadData("");
     }
 
     @Override
@@ -105,9 +108,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onSearchConfirmed(CharSequence text) {
         movie_title = String.valueOf(text);
-
-        if (movie_title.equals("")) loadData();
-        else loadData(String.valueOf(text));
+        onRefresh();
     }
 
     /**
@@ -158,19 +159,6 @@ public class MainActivity extends AppCompatActivity
         rv_movielist.setAdapter(adapter);
     }
 
-    private void loadDummyData() {
-        list.clear();
-        for (int i = 0; i <= 10; i++) {
-            ResultsItem item = new ResultsItem();
-            item.setPosterPath("/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg");
-            item.setTitle("This is very very very long movie title that you can read " + i);
-            item.setOverview("This is very very very long movie overview that you can read " + i);
-            item.setReleaseDate(DateTime.getLongDate("2016-04-1" + i));
-            list.add(item);
-        }
-        adapter.replaceAll(list);
-    }
-
     private void setupListScrollListener() {
         rv_movielist.addOnScrollListener(new RecyclerView.OnScrollListener() {
             /**
@@ -202,16 +190,32 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void loadData() {
+    private void loadDummyData() {
+        list.clear();
+        for (int i = 0; i <= 10; i++) {
+            ResultsItem item = new ResultsItem();
+            item.setPosterPath("/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg");
+            item.setTitle("This is very very very long movie title that you can read " + i);
+            item.setOverview("This is very very very long movie overview that you can read " + i);
+            item.setReleaseDate(DateTime.getLongDate("2016-04-1" + i));
+            list.add(item);
+        }
+        adapter.replaceAll(list);
+    }
+
+    private void loadData(final String movie_title) {
         getSupportActionBar().setSubtitle("");
 
-        apiCall = apiClient.getService().getPopularMovie(currentPage);
+        if (movie_title.isEmpty()) apiCall = apiClient.getService().getPopularMovie(currentPage);
+        else apiCall = apiClient.getService().getSearchMovie(currentPage, movie_title);
+
         apiCall.enqueue(new Callback<SearchModel>() {
             @Override
             public void onResponse(Call<SearchModel> call, Response<SearchModel> response) {
                 if (response.isSuccessful()) {
                     totalPages = response.body().getTotalPages();
                     List<ResultsItem> items = response.body().getResults();
+                    showResults(response.body().getTotalResults());
 
                     if (currentPage > 1) adapter.updateData(items);
                     else adapter.replaceAll(items);
@@ -227,12 +231,6 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void loadData(String movie_title) {
-        getSupportActionBar().setSubtitle("Searching: " + movie_title);
-        adapter.clearAll();
-        stopRefrehing();
-    }
-
     private void loadFailed() {
         stopRefrehing();
         Toast.makeText(MainActivity.this, "Failed to load data!", Toast.LENGTH_SHORT).show();
@@ -242,11 +240,22 @@ public class MainActivity extends AppCompatActivity
         if (swipe_refresh.isRefreshing()) return;
         swipe_refresh.setRefreshing(true);
 
-        if (movie_title.equals("")) loadData();
-        else loadData(movie_title);
+        loadData(movie_title);
     }
 
     private void stopRefrehing() {
         if (swipe_refresh.isRefreshing()) swipe_refresh.setRefreshing(false);
+    }
+
+    private void showResults(int totalResults) {
+        String results;
+
+        String formatResults = NumberFormat.getIntegerInstance().format(totalResults);
+
+        if (totalResults > 0) {
+            results = "I found " + formatResults + " movie" + (totalResults > 1 ? "s" : "") + " for you :)";
+        } else results = "Sorry! I can't find " + movie_title + " everywhere :(";
+
+        getSupportActionBar().setSubtitle(results);
     }
 }
