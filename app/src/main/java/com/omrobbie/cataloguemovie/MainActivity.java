@@ -1,6 +1,7 @@
 package com.omrobbie.cataloguemovie;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,17 +29,21 @@ import retrofit2.Response;
 
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
-public class MainActivity extends AppCompatActivity implements MainView, MaterialSearchBar.OnSearchActionListener {
+public class MainActivity extends AppCompatActivity implements MainView, MaterialSearchBar.OnSearchActionListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.searchBar)
-    MaterialSearchBar searchBar;
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout swipe_refresh;
+
+    @BindView(R.id.search_bar)
+    MaterialSearchBar search_bar;
 
     @BindView(R.id.rv_movielist)
     RecyclerView rv_movielist;
 
+    private String movie_title = "";
     private SearchAdapter adapter;
     private List<ResultsItem> list = new ArrayList<>();
 
@@ -53,7 +58,8 @@ public class MainActivity extends AppCompatActivity implements MainView, Materia
 
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        searchBar.setOnSearchActionListener(this);
+        search_bar.setOnSearchActionListener(this);
+        swipe_refresh.setOnRefreshListener(this);
 
         apiClient = new APIClient();
         MainPresenter presenter = new MainPresenter(this);
@@ -85,7 +91,9 @@ public class MainActivity extends AppCompatActivity implements MainView, Materia
      */
     @Override
     public void onSearchConfirmed(CharSequence text) {
-        if (String.valueOf(text).equals("")) loadData();
+        movie_title = String.valueOf(text);
+
+        if (movie_title.equals("")) loadData();
         else loadData(String.valueOf(text));
     }
 
@@ -97,6 +105,17 @@ public class MainActivity extends AppCompatActivity implements MainView, Materia
     @Override
     public void onButtonClicked(int buttonCode) {
 
+    }
+
+    /**
+     * Called when a swipe gesture triggers a refresh.
+     */
+    @Override
+    public void onRefresh() {
+        currentPage = 1;
+
+        if (movie_title.equals("")) loadData();
+        else loadData(movie_title);
     }
 
     private void setupList() {
@@ -131,6 +150,8 @@ public class MainActivity extends AppCompatActivity implements MainView, Materia
 
                     if (currentPage > 1) adapter.updateData(items);
                     else adapter.replaceAll(items);
+
+                    stopRefrehing();
                 } else loadFailed();
             }
 
@@ -144,9 +165,15 @@ public class MainActivity extends AppCompatActivity implements MainView, Materia
     private void loadData(String movie_title) {
         getSupportActionBar().setSubtitle("Searching: " + movie_title);
         adapter.clearAll();
+        stopRefrehing();
     }
 
     private void loadFailed() {
+        stopRefrehing();
         Toast.makeText(MainActivity.this, "Failed to load data!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void stopRefrehing() {
+        if (swipe_refresh.isRefreshing()) swipe_refresh.setRefreshing(false);
     }
 }

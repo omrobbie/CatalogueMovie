@@ -21,25 +21,33 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_below="@+id/appbar"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.mancj.materialsearchbar.MaterialSearchBar
-            android:id="@+id/searchBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:mt_hint="@string/hint_search_text"
-            app:mt_maxSuggestionsCount="10"
-            app:mt_placeholder="@string/hint_search_text" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_movielist"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <com.mancj.materialsearchbar.MaterialSearchBar
+                android:id="@+id/search_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mt_hint="@string/hint_search_text"
+                app:mt_maxSuggestionsCount="10"
+                app:mt_placeholder="@string/hint_search_text" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_movielist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </android.support.design.widget.CoordinatorLayout>
