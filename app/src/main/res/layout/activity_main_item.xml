@@ -27,7 +27,7 @@
             android:ellipsize="marquee"
             android:maxLines="1"
             android:text="@string/movie_title"
-            android:textSize="@dimen/text_title"
+            android:textSize="@dimen/text_heading"
             app:font="alanya.regular.ttf" />
 
         <com.omrobbie.cataloguemovie.utils.CustomTextView

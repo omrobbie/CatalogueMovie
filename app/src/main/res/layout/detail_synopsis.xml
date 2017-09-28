@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/def_spacing"
-        android:text="@string/text_overview"
-        android:textSize="@dimen/text_heading"
+        android:text="@string/title_overview"
+        android:textSize="@dimen/text_jumbo"
         app:font="alanya.regular.ttf" />
 
     <com.omrobbie.cataloguemovie.utils.CustomTextView
