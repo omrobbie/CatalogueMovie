@@ -1,6 +1,9 @@
 package com.omrobbie.cataloguemovie.adapter;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,7 +41,6 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
 
     public SearchViewHolder(View itemView) {
         super(itemView);
-
         ButterKnife.bind(this, itemView);
     }
 
@@ -58,7 +60,12 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View view) {
                 Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
                 intent.putExtra(DetailActivity.MOVIE_ID, String.valueOf(item.getId()));
-                itemView.getContext().startActivity(intent);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat
+                            .makeSceneTransitionAnimation((Activity) itemView.getContext(), img_poster, "poster");
+                    itemView.getContext().startActivity(intent, activityOptionsCompat.toBundle());
+                } else itemView.getContext().startActivity(intent);
             }
         });
     }

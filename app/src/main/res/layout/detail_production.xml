@@ -24,8 +24,7 @@
             android:id="@+id/img_poster_belongs"
             android:layout_width="92dp"
             android:layout_height="138dp"
-            android:scaleType="centerCrop"
-            android:transitionName="image" />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"

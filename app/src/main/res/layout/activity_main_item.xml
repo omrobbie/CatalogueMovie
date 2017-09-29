@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/def_spacing">
+        android:paddingLeft="@dimen/def_spacing"
+        android:transitionName="poster">
 
         <com.omrobbie.cataloguemovie.utils.CustomTextView
             android:id="@+id/tv_title"

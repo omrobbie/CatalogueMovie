@@ -1,6 +1,7 @@
 package com.omrobbie.cataloguemovie;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
@@ -27,8 +28,14 @@ public class DetailActivity extends AppCompatActivity {
 
     public static final String MOVIE_ID = "movie_id";
 
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsing_toolbar;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.tv_title)
+    TextView tv_title;
 
     @BindView(R.id.img_backdrop)
     ImageView img_backdrop;
@@ -87,6 +94,8 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        collapsing_toolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+
         String movie_id = getIntent().getStringExtra(MOVIE_ID);
         loadData(movie_id);
     }
@@ -104,6 +113,8 @@ public class DetailActivity extends AppCompatActivity {
             public void onResponse(Call<DetailModel> call, Response<DetailModel> response) {
                 if (response.isSuccessful()) {
                     DetailModel item = response.body();
+
+                    tv_title.setText(item.getTitle());
 
                     Glide.with(DetailActivity.this)
                             .load(BuildConfig.BASE_URL_IMG + "w185" + item.getBackdropPath())

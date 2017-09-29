@@ -1,69 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="@dimen/def_clear_space">
 
-    <ImageView
-        android:id="@+id/img_poster"
-        android:layout_width="154dp"
-        android:layout_height="231dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/placeholder"
-        android:transitionName="image" />
+    <com.omrobbie.cataloguemovie.utils.CustomTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/def_clear_space"
+        android:textSize="@dimen/text_jumbo"
+        app:font="alanya.regular.ttf" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/def_clear_space"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_release_date"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_release_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/img_poster"
+            android:layout_width="154dp"
+            android:layout_height="231dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder"
+            android:transitionName="poster" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/def_clear_space">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/def_clear_space"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_vote"
+                android:text="@string/label_release_date"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_vote"
+                android:id="@+id/tv_release_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/def_clear_space">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_vote"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_vote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/def_spacing"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <include layout="@layout/detail_rating" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/def_spacing"
+                android:layout_marginTop="@dimen/def_clear_space"
+                android:text="@string/label_genres"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_genres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/def_clear_space" />
+
         </LinearLayout>
-
-        <include layout="@layout/detail_rating" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/def_clear_space"
-            android:text="@string/label_genres"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_genres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/def_clear_space" />
 
     </LinearLayout>
 
