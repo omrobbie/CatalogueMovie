@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:orientation="horizontal"
-    android:padding="@dimen/def_clear_space"
-    tools:showIn="@layout/activity_detail">
+    android:padding="@dimen/def_clear_space">
 
     <ImageView
         android:id="@+id/img_poster"
@@ -25,14 +23,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Release Date"
+            android:text="@string/label_release_date"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_release_date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/movie_longdate" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,18 +39,31 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User Vote : "
+                android:text="@string/label_vote"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_vote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/movie_vote"
+                android:layout_marginLeft="@dimen/def_spacing"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <include layout="@layout/detail_rating" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/def_clear_space"
+            android:text="@string/label_genres"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_genres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/def_clear_space" />
 
     </LinearLayout>
 

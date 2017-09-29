@@ -11,8 +11,7 @@
         android:id="@+id/img_poster"
         android:layout_width="45dp"
         android:layout_height="68dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/placeholder" />
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +25,6 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:maxLines="1"
-            android:text="@string/movie_title"
             android:textSize="@dimen/text_heading"
             app:font="alanya.regular.ttf" />
 
@@ -36,7 +34,6 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:maxLines="1"
-            android:text="@string/movie_overview"
             android:textSize="@dimen/text_subheading"
             app:font="roboto-condensed.light.ttf" />
 
@@ -45,7 +42,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/def_spacing"
-            android:text="@string/movie_longdate"
             android:textSize="@dimen/text_caption" />
 
     </LinearLayout>

@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
     private List<ResultsItem> list = new ArrayList<>();
 
     private Call<SearchModel> apiCall;
-    private APIClient apiClient;
+    private APIClient apiClient = new APIClient();;
 
     private String movie_title = "";
     private int currentPage = 1;
@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity
         search_bar.inflateMenu(R.menu.main);
         search_bar.getMenu().setOnMenuItemClickListener(this);
 
-        apiClient = new APIClient();
         MainPresenter presenter = new MainPresenter(this);
 
         setupList();
