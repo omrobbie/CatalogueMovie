@@ -24,7 +24,8 @@
             android:id="@+id/img_poster_belongs"
             android:layout_width="92dp"
             android:layout_height="138dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,6 +43,7 @@
                 android:id="@+id/tv_title_belongs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="-"
                 android:textSize="@dimen/text_title" />
 
             <TextView

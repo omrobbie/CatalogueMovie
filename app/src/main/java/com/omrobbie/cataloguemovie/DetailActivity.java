@@ -9,9 +9,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+import com.google.gson.Gson;
 import com.omrobbie.cataloguemovie.api.APIClient;
 import com.omrobbie.cataloguemovie.mvp.model.detail.DetailModel;
+import com.omrobbie.cataloguemovie.mvp.model.search.ResultsItem;
 import com.omrobbie.cataloguemovie.utils.DateTime;
 
 import java.text.NumberFormat;
@@ -26,7 +27,7 @@ import retrofit2.Response;
 
 public class DetailActivity extends AppCompatActivity {
 
-    public static final String MOVIE_ID = "movie_id";
+    public static final String MOVIE_ITEM = "movie_item";
 
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsing_toolbar;
@@ -84,6 +85,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private Call<DetailModel> apiCall;
     private APIClient apiClient = new APIClient();
+    private Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +98,8 @@ public class DetailActivity extends AppCompatActivity {
 
         collapsing_toolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
 
-        String movie_id = getIntent().getStringExtra(MOVIE_ID);
-        loadData(movie_id);
+        String movie_item = getIntent().getStringExtra(MOVIE_ITEM);
+        loadData(movie_item);
     }
 
     @Override
@@ -106,34 +108,46 @@ public class DetailActivity extends AppCompatActivity {
         if (apiCall != null) apiCall.cancel();
     }
 
-    private void loadData(String movie_id) {
-        apiCall = apiClient.getService().getDetailMovie(movie_id);
+    private void loadData(String movie_item) {
+        ResultsItem item = gson.fromJson(movie_item, ResultsItem.class);
+        loadDataInServer(String.valueOf(item.getId()));
+
+        getSupportActionBar().setTitle(item.getTitle());
+        tv_title.setText(item.getTitle());
+
+        Glide.with(DetailActivity.this)
+                .load(BuildConfig.BASE_URL_IMG + "w185" + item.getBackdropPath())
+                .into(img_backdrop);
+
+        Glide.with(DetailActivity.this)
+                .load(BuildConfig.BASE_URL_IMG + "w154" + item.getPosterPath())
+                .into(img_poster);
+
+        tv_release_date.setText(DateTime.getLongDate(item.getReleaseDate()));
+        tv_vote.setText(String.valueOf(item.getVoteAverage()));
+        tv_overview.setText(item.getOverview());
+
+        double userRating = item.getVoteAverage() / 2;
+        int integerPart = (int) userRating;
+
+        // Fill stars
+        for (int i = 0; i < integerPart; i++) {
+            img_vote.get(i).setImageResource(R.drawable.ic_star_black_24dp);
+        }
+
+        // Fill half star
+        if (Math.round(userRating) > integerPart) {
+            img_vote.get(integerPart).setImageResource(R.drawable.ic_star_half_black_24dp);
+        }
+    }
+
+    private void loadDataInServer(String movie_item) {
+        apiCall = apiClient.getService().getDetailMovie(movie_item);
         apiCall.enqueue(new Callback<DetailModel>() {
             @Override
             public void onResponse(Call<DetailModel> call, Response<DetailModel> response) {
                 if (response.isSuccessful()) {
                     DetailModel item = response.body();
-
-                    tv_title.setText(item.getTitle());
-
-                    Glide.with(DetailActivity.this)
-                            .load(BuildConfig.BASE_URL_IMG + "w185" + item.getBackdropPath())
-                            .apply(new RequestOptions()
-                                    .placeholder(R.drawable.placeholder)
-                                    .centerCrop()
-                            )
-                            .into(img_backdrop);
-
-                    Glide.with(DetailActivity.this)
-                            .load(BuildConfig.BASE_URL_IMG + "w154" + item.getPosterPath())
-                            .apply(new RequestOptions()
-                                    .placeholder(R.drawable.placeholder)
-                                    .centerCrop()
-                            )
-                            .into(img_poster);
-
-                    tv_release_date.setText(DateTime.getLongDate(item.getReleaseDate()));
-                    tv_vote.setText(String.valueOf(item.getVoteAverage()));
 
                     int size = 0;
 
@@ -144,15 +158,9 @@ public class DetailActivity extends AppCompatActivity {
                     }
                     tv_genres.setText(genres);
 
-                    tv_overview.setText(item.getOverview());
-
                     if (item.getBelongsToCollection() != null) {
                         Glide.with(DetailActivity.this)
                                 .load(BuildConfig.BASE_URL_IMG + "w92" + item.getBelongsToCollection().getPosterPath())
-                                .apply(new RequestOptions()
-                                        .placeholder(R.drawable.placeholder)
-                                        .centerCrop()
-                                )
                                 .into(img_poster_belongs);
 
                         tv_title_belongs.setText(item.getBelongsToCollection().getName());
@@ -174,19 +182,6 @@ public class DetailActivity extends AppCompatActivity {
                         countries += "√ " + item.getProductionCountries().get(i).getName() + (i + 1 < size ? "\n" : "");
                     }
                     tv_countries.setText(countries);
-
-                    double userRating = item.getVoteAverage() / 2;
-                    int integerPart = (int) userRating;
-
-                    // Fill stars
-                    for (int i = 0; i < integerPart; i++) {
-                        img_vote.get(i).setImageResource(R.drawable.ic_star_black_24dp);
-                    }
-
-                    // Fill half star
-                    if (Math.round(userRating) > integerPart) {
-                        img_vote.get(integerPart).setImageResource(R.drawable.ic_star_half_black_24dp);
-                    }
                 } else loadFailed();
             }
 
