@@ -4,35 +4,35 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/star1"
+        android:id="@+id/img_star1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_star_border_black_24dp"
         android:tint="@android:color/tertiary_text_light" />
 
     <ImageView
-        android:id="@+id/star2"
+        android:id="@+id/img_star2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_star_border_black_24dp"
         android:tint="@android:color/tertiary_text_light" />
 
     <ImageView
-        android:id="@+id/star3"
+        android:id="@+id/img_star3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_star_border_black_24dp"
         android:tint="@android:color/tertiary_text_light" />
 
     <ImageView
-        android:id="@+id/star4"
+        android:id="@+id/img_star4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_star_border_black_24dp"
         android:tint="@android:color/tertiary_text_light" />
 
     <ImageView
-        android:id="@+id/star5"
+        android:id="@+id/img_star5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_star_border_black_24dp"

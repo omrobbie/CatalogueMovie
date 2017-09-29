@@ -42,7 +42,7 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void bind(ResultsItem item) {
+    public void bind(final ResultsItem item) {
         tv_title.setText(item.getTitle());
         tv_overview.setText(item.getOverview());
         tv_release_date.setText(DateTime.getLongDate(item.getReleaseDate()));
@@ -57,6 +57,7 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
+                intent.putExtra(DetailActivity.MOVIE_ID, String.valueOf(item.getId()));
                 itemView.getContext().startActivity(intent);
             }
         });

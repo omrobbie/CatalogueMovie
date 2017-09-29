@@ -14,7 +14,7 @@
         app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
         <ImageView
-            android:id="@+id/backdrop"
+            android:id="@+id/img_backdrop"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"

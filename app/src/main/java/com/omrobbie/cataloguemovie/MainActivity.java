@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity
 
     private void loadFailed() {
         stopRefrehing();
-        Toast.makeText(MainActivity.this, "Failed to load data!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "Failed to load data.\nPlease check your Internet connections!", Toast.LENGTH_SHORT).show();
     }
 
     private void startRefreshing() {
