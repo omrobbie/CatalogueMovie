@@ -20,6 +20,7 @@ import com.omrobbie.cataloguemovie.mvp.MainPresenter;
 import com.omrobbie.cataloguemovie.mvp.MainView;
 import com.omrobbie.cataloguemovie.mvp.model.search.ResultsItem;
 import com.omrobbie.cataloguemovie.mvp.model.search.SearchModel;
+import com.omrobbie.cataloguemovie.utils.AlarmReceiver;
 import com.omrobbie.cataloguemovie.utils.DateTime;
 
 import java.text.NumberFormat;
@@ -57,16 +58,20 @@ public class MainActivity extends AppCompatActivity
     private List<ResultsItem> list = new ArrayList<>();
 
     private Call<SearchModel> apiCall;
-    private APIClient apiClient = new APIClient();;
+    private APIClient apiClient = new APIClient();
 
     private String movie_title = "";
     private int currentPage = 1;
     private int totalPages = 1;
 
+    private AlarmReceiver alarmReceiver = new AlarmReceiver();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        alarmReceiver.setRepeatingAlarm(this, alarmReceiver.TYPE_REPEATING, "07:00", "Good morning! Ready to pick your new movies today?");
 
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
