@@ -1,7 +1,6 @@
 package com.omrobbie.cataloguemovie;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -9,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -22,6 +20,7 @@ import com.omrobbie.cataloguemovie.mvp.model.search.ResultsItem;
 import com.omrobbie.cataloguemovie.mvp.model.search.SearchModel;
 import com.omrobbie.cataloguemovie.utils.AlarmReceiver;
 import com.omrobbie.cataloguemovie.utils.DateTime;
+import com.omrobbie.cataloguemovie.utils.upcoming.SchedulerTask;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -33,7 +32,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.R.attr.format;
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
 public class MainActivity extends AppCompatActivity
@@ -65,6 +63,7 @@ public class MainActivity extends AppCompatActivity
     private int totalPages = 1;
 
     private AlarmReceiver alarmReceiver = new AlarmReceiver();
+    private SchedulerTask schedulerTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +71,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         alarmReceiver.setRepeatingAlarm(this, alarmReceiver.TYPE_REPEATING, "07:00", "Good morning! Ready to pick your new movies today?");
+
+        schedulerTask = new SchedulerTask(this);
+        schedulerTask.createPeriodicTask();
 
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
