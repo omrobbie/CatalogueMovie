@@ -49,5 +49,7 @@ dependencies {
     compile 'com.github.mancj:MaterialSearchBar:0.7.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    compile 'com.google.android.gms:play-services-gcm:9.6.1'
+
     testCompile 'junit:junit:4.12'
 }
