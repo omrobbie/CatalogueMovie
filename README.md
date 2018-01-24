@@ -4,7 +4,7 @@ The first final project from dicoding.com online course. Create the searching mo
 ## Penampakan
 <img src="https://github.com/omrobbie/CatalogueMovie/blob/master/screenshot/Screenshot_1516762422.png" width="256">&nbsp;&nbsp;&nbsp;<img src="https://github.com/omrobbie/CatalogueMovie/blob/master/screenshot/Screenshot_1516762430.png" width="256">&nbsp;&nbsp;&nbsp;<img src="https://github.com/omrobbie/CatalogueMovie/blob/master/screenshot/Screenshot_1516762473.png" width="256">
 
-## Submission
+## Submission 1
 Untuk menyelesaikan modul Fundamentals anda di haruskan submit aplikasi yang anda buat sendiri. Aplikasi yang akan anda buat adalah aplikasi katalogue movie. Dengan memanfaatkan materi pada modul Fundamentals ditambah dengan API dari themoviedb.org anda diharapkan dapat membuat aplikasi yang sesuai dengan requirements untuk menyelesaikan submission.
 
 ### Requirements atau Fitur yang harus ada pada aplikasi kamu
@@ -18,9 +18,9 @@ Untuk menyelesaikan modul Fundamentals anda di haruskan submit aplikasi yang and
 4. Tampilan poster dari movie
 
 ### Link API yang digunakan
-1. api.themoviedb.org/3/search/movie?api_key=<API KEY KAMU>&language=en-US&query=<INPUTAN NAMA MOVIE>
-2. api.themoviedb.org/3/movie/"<ID MOVIE>?api_key=<API KEY KAMU>&language=en-US
-3. api.themoviedb.org/3/movie/upcoming?api_key=<API KEY KAMU>&language=en-US
+1. api.themoviedb.org/3/search/movie?api_key=(API KEY KAMU)&language=en-US&query=(INPUTAN NAMA MOVIE)
+2. api.themoviedb.org/3/movie/(ID MOVIE)?api_key=(API KEY KAMU)&language=en-US
+3. api.themoviedb.org/3/movie/upcoming?api_key=(API KEY KAMU)&language=en-US
 4. Untuk gambar dapat menggunakan link berikut: image.tmdb.org/t/p/
     * Tersedia beberapa ukuran yang dapat kamu gunakan w92, w154, w185, w342, w500, w780, dan original.
 
