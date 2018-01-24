@@ -1,3 +1,9 @@
+/*
+ * Created by omrobbie.
+ * Copyright (c) 2018. All rights reserved.
+ * Last modified 9/28/17 1:37 PM.
+ */
+
 package com.omrobbie.cataloguemovie.api;
 
 import com.omrobbie.cataloguemovie.BuildConfig;

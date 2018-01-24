@@ -1,3 +1,9 @@
+/*
+ * Created by omrobbie.
+ * Copyright (c) 2018. All rights reserved.
+ * Last modified 10/3/17 9:52 AM.
+ */
+
 package com.omrobbie.cataloguemovie.api;
 
 import com.omrobbie.cataloguemovie.mvp.model.detail.DetailModel;

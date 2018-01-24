@@ -1,3 +1,9 @@
+/*
+ * Created by omrobbie.
+ * Copyright (c) 2018. All rights reserved.
+ * Last modified 9/27/17 9:25 AM.
+ */
+
 package com.omrobbie.cataloguemovie.mvp.model.detail;
 
 import com.google.gson.annotations.SerializedName;

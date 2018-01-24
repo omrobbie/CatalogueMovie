@@ -1,3 +1,9 @@
+/*
+ * Created by omrobbie.
+ * Copyright (c) 2018. All rights reserved.
+ * Last modified 9/27/17 3:00 PM.
+ */
+
 package com.omrobbie.cataloguemovie.utils;
 
 import java.text.DateFormat;

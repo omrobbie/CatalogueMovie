@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by omrobbie.
+  ~ Copyright (c) 2018. All rights reserved.
+  ~ Last modified 9/28/17 3:55 PM.
+  -->
+
 <resources>
     <dimen name="def_clear_space">16dp</dimen>
     <dimen name="def_spacing">8dp</dimen>

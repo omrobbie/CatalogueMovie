@@ -1,3 +1,9 @@
+<!--
+  ~ Created by omrobbie.
+  ~ Copyright (c) 2018. All rights reserved.
+  ~ Last modified 9/29/17 11:37 AM.
+  -->
+
 <resources>
     <string name="app_name">Catalogue Movie</string>
     <string name="hint_search_text">search by movie title</string>

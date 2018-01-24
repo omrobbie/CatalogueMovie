@@ -1,3 +1,9 @@
+/*
+ * Created by omrobbie.
+ * Copyright (c) 2018. All rights reserved.
+ * Last modified 10/20/17 10:15 AM.
+ */
+
 apply plugin: 'com.android.application'
 
 android {

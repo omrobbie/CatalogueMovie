@@ -1,3 +1,9 @@
+/*
+ * Created by omrobbie.
+ * Copyright (c) 2018. All rights reserved.
+ * Last modified 10/4/17 12:30 PM.
+ */
+
 package com.omrobbie.cataloguemovie.utils;
 
 import android.app.AlarmManager;

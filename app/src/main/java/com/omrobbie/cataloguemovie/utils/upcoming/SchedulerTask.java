@@ -1,3 +1,9 @@
+/*
+ * Created by omrobbie.
+ * Copyright (c) 2018. All rights reserved.
+ * Last modified 10/4/17 11:57 AM.
+ */
+
 package com.omrobbie.cataloguemovie.utils.upcoming;
 
 import android.content.Context;

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CatalogueMovie.iml" filepath="$PROJECT_DIR$/CatalogueMovie.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\User\Documents\dicoding\AndroidExpert-Submission\CatalogueMovie\app\app.iml" filepath="C:\Users\User\Documents\dicoding\AndroidExpert-Submission\CatalogueMovie\app\app.iml" />
     </modules>
   </component>
 </project>

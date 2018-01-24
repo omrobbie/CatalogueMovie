@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by omrobbie.
+  ~ Copyright (c) 2018. All rights reserved.
+  ~ Last modified 9/27/17 9:28 PM.
+  -->
+
 <resources>
     <color name="colorPrimary">#F9A11F</color>
     <color name="colorPrimaryLight">#FFD256</color>

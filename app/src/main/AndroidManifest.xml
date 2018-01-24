@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by omrobbie.
+  ~ Copyright (c) 2018. All rights reserved.
+  ~ Last modified 10/3/17 7:40 PM.
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.omrobbie.cataloguemovie">
 
