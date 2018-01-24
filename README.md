@@ -1,6 +1,9 @@
 # CatalogueMovie
 The first final project from dicoding.com online course. Create the searching movie apps from the catalogue using api.themoviedb.org.
 
+### Penampakan
+<img src="https://github.com/omrobbie/CatalogueMovie/blob/master/screenshot/Screenshot_1516762422.png" width="256">&nbsp;&nbsp;&nbsp;<img src="https://github.com/omrobbie/CatalogueMovie/blob/master/screenshot/Screenshot_1516762430.png" width="256">&nbsp;&nbsp;&nbsp;<img src="https://github.com/omrobbie/CatalogueMovie/blob/master/screenshot/Screenshot_1516762473.png" width="256">
+
 ### Submission
 Untuk menyelesaikan modul Fundamentals anda di haruskan submit aplikasi yang anda buat sendiri. Aplikasi yang akan anda buat adalah aplikasi katalogue movie. Dengan memanfaatkan materi pada modul Fundamentals ditambah dengan API dari themoviedb.org anda diharapkan dapat membuat aplikasi yang sesuai dengan requirements untuk menyelesaikan submission.
 
@@ -20,3 +23,12 @@ Untuk menyelesaikan modul Fundamentals anda di haruskan submit aplikasi yang and
 3. api.themoviedb.org/3/movie/upcoming?api_key=<API KEY KAMU>&language=en-US
 4. Untuk gambar dapat menggunakan link berikut: image.tmdb.org/t/p/
     * Tersedia beberapa ukuran yang dapat kamu gunakan w92, w154, w185, w342, w500, w780, dan original.
+
+# Update
+Bagi teman-teman yang masih mengikuti kelas dari dicoding, [Kelas Menjadi Android Developer Expert](https://www.dicoding.com/academies/14 "klik untuk melihat kelas"). Silahkan gunakan source ini sebagai bahan referensi, tapi **TIDAK** untuk disalin secara utuh tanpa tau cara implementasinya.
+
+Ayolah kawan.. Kalian sudah bayar mahal untuk ikut kelas ini, kalian harus dapat ilmunya. Percuma kalian dapat sertifikat dari dicoding kalau di kemudian hari kalian tidak mendapatkan ilmunya dari sini.
+
+Semangat kawan.. Perjalanan masih panjang. Lakukan yang terbaik yang kalian bisa. Silahkan tanya saya jika ada yang kurang dimengerti. Kalau saya bisa bantu, pasti saya dampingi.
+
+Mari kita maju bersama-sama..
