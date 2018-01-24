@@ -1,10 +1,10 @@
 # CatalogueMovie
 The first final project from dicoding.com online course. Create the searching movie apps from the catalogue using api.themoviedb.org.
 
-### Penampakan
+## Penampakan
 <img src="https://github.com/omrobbie/CatalogueMovie/blob/master/screenshot/Screenshot_1516762422.png" width="256">&nbsp;&nbsp;&nbsp;<img src="https://github.com/omrobbie/CatalogueMovie/blob/master/screenshot/Screenshot_1516762430.png" width="256">&nbsp;&nbsp;&nbsp;<img src="https://github.com/omrobbie/CatalogueMovie/blob/master/screenshot/Screenshot_1516762473.png" width="256">
 
-### Submission
+## Submission
 Untuk menyelesaikan modul Fundamentals anda di haruskan submit aplikasi yang anda buat sendiri. Aplikasi yang akan anda buat adalah aplikasi katalogue movie. Dengan memanfaatkan materi pada modul Fundamentals ditambah dengan API dari themoviedb.org anda diharapkan dapat membuat aplikasi yang sesuai dengan requirements untuk menyelesaikan submission.
 
 ### Requirements atau Fitur yang harus ada pada aplikasi kamu
